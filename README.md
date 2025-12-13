@@ -16,6 +16,7 @@
    ```
    npm install typescript@latest
    ```
+   04. Confirm extrenal conflict with TS version (VS extensions)
    
 
 
