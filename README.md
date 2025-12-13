@@ -2,6 +2,23 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
+## In Foreing CPU
+   01. habilitar permisos
+   ```
+   Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+   ```
+   02. Firewall Advanced Config
+   03. Intalar yanr 
+   ```
+   npm install -g yarn
+   ```
+   04. Update TS
+   ```
+   npm install typescript@latest
+   ```
+   
+
+
 # Ejecutar en Desarrollo
 
   1. Clonar Repo
