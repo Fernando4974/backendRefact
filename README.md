@@ -16,7 +16,7 @@
    ```
    npm install typescript@latest
    ```
-   04. Confirm extrenal conflict with TS version (VS extensions)
+   05. Confirm extrenal conflict with TS version (VS extensions)
    
 
 
@@ -31,6 +31,9 @@
   ``` 
   npm i -g @nestjs/cli
   ```
+  3-1.
+  Crear .ENV
+  
   4. Levantar BD
   ``` 
   docker-compose up
