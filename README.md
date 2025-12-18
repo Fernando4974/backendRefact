@@ -2,6 +2,11 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
+
+## wifi SENA
+
+aprendices
+Apr3nd1z2025**
 ## In Foreing CPU
    01. habilitar permisos
    ```
