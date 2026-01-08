@@ -4,6 +4,8 @@ import { join } from 'path';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductsModule } from './products/products.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       rootPath: join(__dirname, '..', 'public'),
     }),
     UserModule,
+    ProductsModule,
+    CommonModule,
   ],
 })
 export class AppModule {}
