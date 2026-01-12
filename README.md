@@ -52,6 +52,12 @@ Apr3nd1z2025**
   yarn start:dev
   ```
 
+  7. Llenar DB
+  ```
+  http:localhost:3000/api/seed
+  ```
+  
+
 
 ## Stack
 
