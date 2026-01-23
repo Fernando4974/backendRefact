@@ -58,7 +58,7 @@ export class UserService {
    const user = this.findOne(id);
    await this.userRepository.remove(await user);
 
-    return `This action removes a #${id} user`;
+    return `This action removes a #${id} ${(await user).name} user`;
   }
  /////////////////////////////------------------------------------------------------------------------------------Manejo de errores de la base de datos
   private handleDBErrors(error: any) {
