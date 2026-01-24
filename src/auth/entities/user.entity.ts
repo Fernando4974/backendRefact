@@ -1,5 +1,6 @@
 import { IsArray, IsEmail, IsOptional, IsPassportNumber, Min, MinLength } from 'class-validator';
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from 'src/products/entities/product.entity';
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class User {
@@ -11,7 +12,7 @@ export class User {
   email: string;
 
   @MinLength(6)
-  @Column('text', { nullable: false , select: false })
+  @Column('text', { nullable: false, select: false })
   password: string;
 
   @Column('text', { nullable: false })
@@ -22,12 +23,18 @@ export class User {
   isActive?: boolean;
 
   @IsArray()
-  @Column('text', { nullable: true , array: true , default: ['user'] })
+  @Column('text', { nullable: true, array: true, default: ['user'] })
   role: string[];
 
+  @OneToMany(
+    () => Product,
+    (product) => product.user
+  )
+  product: Product;
 
-@BeforeInsert()
-normalizeEmail() {
+
+  @BeforeInsert()
+  normalizeEmail() {
     this.email = this.email.toLowerCase().trim();
   }
 }

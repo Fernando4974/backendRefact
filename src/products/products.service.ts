@@ -9,6 +9,8 @@ import {validate as isUUID} from 'uuid'
 import { title } from 'process';
 import { ProductImage } from './entities';
 import { DataSource } from 'typeorm';   
+import { User } from 'src/auth/entities/user.entity';
+import { use } from 'passport';
 
 
 @Injectable()
@@ -27,14 +29,20 @@ export class ProductsService {
   ){}
 
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto, user: User) {
 
-    const {images = [], ...productDetails} = createProductDto;
+
+    const {  images = [], ...productDetails} = createProductDto;
+  
     try {
 
       const product = this.productRepository.create({
         ...productDetails,
-      images:images.map( imageUrl => this.productImageRepository.create({url: imageUrl}) )
+      user,
+      images:images.map( imageUrl => this.productImageRepository.create({url: imageUrl}),
+     
+    )
+     
       });
       await this.productRepository.save(product);
       return {...product, images};
@@ -113,12 +121,13 @@ export class ProductsService {
     }
   }
 
-  async update(id: string, updateProductDto: UpdateProductDto) {
+  async update(id: string, updateProductDto: UpdateProductDto, user: User) {
 
 
     const { images, ...toUpdate } = updateProductDto;
 
     const product = await this.productRepository.preload({
+      
       id: id,
       ...toUpdate
     });
@@ -142,6 +151,7 @@ export class ProductsService {
       else{
         product.images = await this.productImageRepository.findBy({ product: { id: id } });
       }
+      product.user = user;
       await queryRunner.manager.save(product);
       await queryRunner.commitTransaction();
       await queryRunner.release();

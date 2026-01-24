@@ -11,10 +11,10 @@ export class SeedService {
   
   constructor( private readonly productsService: ProductsService) {}
 
-   async runSeed() {
+   async runSeed(user) {
     try {
       
-    await this.insertProducts();
+    await this.insertProducts(user);
 
     return 'Seed executed successfully [Products deleted and re-inserted]';
 
@@ -27,7 +27,7 @@ export class SeedService {
    
   }
   
-  private async insertProducts() {
+  private async insertProducts(user) {
      await this.productsService.deleteAllProducts();
 
      const products = initialData.products;
@@ -35,7 +35,7 @@ export class SeedService {
      const insertPromises: Promise<any>[] = [];
 
   products.forEach( product => {
-    insertPromises.push( this.productsService.create(product) );
+    insertPromises.push( this.productsService.create(product, user) );
     } );
 
     await Promise.all( insertPromises );
